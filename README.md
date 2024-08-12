@@ -11,6 +11,8 @@
 4. (Optional) Refine swerve kinematics calculations (link)[https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/swerve-drive-kinematics.html].
 5. (Optional) Refine motor controllers (link)[] 
 
+6. (Optional) Refine PID Control with fusedCANCoder (link)[https://v6.docs.ctr-electronics.com/en/stable/docs/api-reference/device-specific/talonfx/remote-sensors.html#fusedcancoder]
+
 # Examples, Libraries & Documentations
 
 FRC python examples: https://github.com/robotpy/examples
