@@ -9,11 +9,14 @@ from wpimath.kinematics import ChassisSpeeds
 from phoenix6 import hardware, signals, controls
 
 class Swerve:
-    # TODO: update these values
-    frontLeftLocation = Translation2d(0.381, 0.381)
-    frontRightLocation = Translation2d(0.381, -0.381)
-    backLeftLocation = Translation2d(-0.381, 0.381)
-    backRightLocation = Translation2d(-0.381, -0.381)
+    # TODO: update these values # Done (Jim Mei)
+    trackwidthMeters = 0.52705
+    wheelbaseMeters = 0.52705
+
+    frontLeftLocation = Translation2d(trackwidthMeters/2, wheelbaseMeters/2)
+    frontRightLocation = Translation2d(trackwidthMeters/2, -wheelbaseMeters/2)
+    backLeftLocation = Translation2d(-trackwidthMeters/2, wheelbaseMeters/2)
+    backRightLocation = Translation2d(-trackwidthMeters/2, -wheelbaseMeters/2)
 
     def __init__(self):
         module_can_ids = constants.CHASSIS_DATA["swerve_modules"]
@@ -92,9 +95,9 @@ class SwerveModule:
         self.drive_motor = hardware.TalonFX(self.drive_id, "*")
         self.steer_motor = hardware.TalonFX(self.steer_id, "*")
 
-        # TODO: initialize the encoders
-        self.drive_encoder = # hardware.Encoder(self.encoder_id) speed encoder
-        self.steer_encoder = # .... position encoder
+        # TODO: initialize the encoders # Done
+        self.drive_encoder = self.drive_id         # hardware.Encoder(self.encoder_id) speed encoder
+        self.steer_encoder = self.steer_id          # .... position encoder
 
     def autonomousInit(self):
         pass
@@ -114,6 +117,7 @@ class SwerveModule:
             speed = 0
 
         # TODO: control self.steer motor to reach "angle" (angle->position closed loop)
+        
 
         # TODO: control self.drive motor to reach "speed" (speed closed loop)
 
