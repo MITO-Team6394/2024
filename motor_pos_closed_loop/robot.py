@@ -32,19 +32,22 @@ class MyRobot(wpilib.TimedRobot):
         XboxController = wpilib.XboxController
         self.joystick = XboxController(0)
         cfg = configs.TalonFXConfiguration()
-        cfg.slot0.k_p = 2.4; # An error of 1 rotation results in 2.4 V output
+        cfg.slot0.k_p = 3; # An error of 1 rotation results in 2.4 V output
         cfg.slot0.k_i = 0; # No output for integrated error
         cfg.slot0.k_d = 0.1; # A velocity of 1 rps results in 0.1 V output  # 0.1
+
+        # cfg.slot0.k_v   转速
+        
         # Peak output of 8 V
         cfg.voltage.peak_forward_voltage = 8
         cfg.voltage.peak_reverse_voltage = -8
 
-        cfg.slot1.k_p = 60; # An error of 1 rotation results in 60 A output
-        cfg.slot1.k_i = 0; # No output for integrated error
-        cfg.slot1.k_d = 6; # A velocity of 1 rps results in 6 A output
-        # Peak output of 120 A
-        cfg.torque_current.peak_forward_torque_current = 120
-        cfg.torque_current.peak_reverse_torque_current = -120
+        # cfg.slot1.k_p = 60; # An error of 1 rotation results in 60 A output
+        # cfg.slot1.k_i = 0; # No output for integrated error
+        # cfg.slot1.k_d = 6; # A velocity of 1 rps results in 6 A output
+        # # Peak output of 120 A
+        # cfg.torque_current.peak_forward_torque_current = 120
+        # cfg.torque_current.peak_reverse_torque_current = -120
 
         # Retry config apply up to 5 times, report if failure
         status: StatusCode = StatusCode.STATUS_CODE_NOT_INITIALIZED
@@ -77,9 +80,9 @@ class MyRobot(wpilib.TimedRobot):
         if self.joystick.getLeftBumper():
             # Use position voltage
             self.steer_motor.set_control(self.position_voltage.with_position(desired_rotations))
-        elif self.joystick.getRightBumper():
-            # Use position torque
-            self.steer_motor.set_control(self.position_torque.with_position(desired_rotations))
+        # elif self.joystick.getRightBumper():
+        #     # Use position torque
+        #     self.steer_motor.set_control(self.position_torque.with_position(desired_rotations))
         else:
             # Disable the motor instead
             self.steer_motor.set_control(self.brake)
